@@ -1,0 +1,81 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+.dark {
+  color-scheme: dark;
+}
+
+body {
+  color: #0b1220;
+  background: radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.08), transparent 25%),
+    radial-gradient(circle at 80% 0%, rgba(15, 23, 42, 0.7), transparent 30%),
+    linear-gradient(180deg, #f7f9fc 0%, #e9eef7 40%, #e2e8f0 100%);
+}
+
+.dark body {
+  color: #e8ecf4;
+  background: radial-gradient(circle at 20% 20%, rgba(124, 58, 237, 0.12), transparent 25%),
+    radial-gradient(circle at 80% 0%, rgba(124, 58, 237, 0.12), transparent 30%),
+    linear-gradient(180deg, #0a0d14 0%, #0f172a 40%, #0b1220 100%);
+}
+
+a {
+  @apply transition-colors duration-200;
+}
+
+.section-shell {
+  @apply mx-auto max-w-6xl px-6 sm:px-8 lg:px-10;
+}
+
+.card-surface {
+  @apply rounded-3xl border border-white/10 bg-white/70 p-6 shadow-card backdrop-blur-lg transition hover:-translate-y-1 hover:shadow-glow dark:border-white/5 dark:bg-white/5;
+}
+
+.tag {
+  @apply inline-flex items-center gap-2 rounded-full border border-white/10 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-muted/80 dark:border-white/10 dark:text-white/60;
+}
+
+.btn-primary {
+  @apply inline-flex items-center justify-center gap-2 rounded-full bg-ink px-5 py-3 text-sm font-semibold text-white shadow-lg shadow-ink/25 transition hover:-translate-y-0.5 hover:shadow-glow focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent dark:bg-mist dark:text-ink;
+}
+
+.btn-ghost {
+  @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/20 px-5 py-3 text-sm font-semibold text-ink transition hover:-translate-y-0.5 hover:border-accent hover:text-accent focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent dark:text-mist;
+}
+
+input, textarea {
+  @apply w-full rounded-2xl border border-white/20 bg-white/70 px-4 py-3 text-sm text-ink shadow-inner transition focus:border-accent focus:outline-none focus:ring-2 focus:ring-accent/40 dark:border-white/10 dark:bg-white/5 dark:text-mist;
+}
+
+::selection {
+  background-color: rgba(124, 58, 237, 0.2);
+}
+
+.portfolio-slider {
+  @apply relative overflow-hidden;
+}
+
+.portfolio-track {
+  display: flex;
+  gap: 1.5rem;
+  animation: portfolio-scroll 32s linear infinite;
+}
+
+.portfolio-track:hover {
+  animation-play-state: paused;
+}
+
+@keyframes portfolio-scroll {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
