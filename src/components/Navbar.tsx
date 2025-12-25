@@ -19,6 +19,7 @@ export function Navbar() {
   const { theme, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const logoSrc = `${import.meta.env.BASE_URL}logo.png`;
 
   useEffect(() => {
     const onScroll = () => setIsScrolled(window.scrollY > 12);
@@ -40,7 +41,7 @@ export function Navbar() {
             className="transition hover:opacity-80 dark:hover:opacity-80 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent"
           >
             <img
-              src="/logo.png"
+              src={logoSrc}
               alt="<DivDesign>"
               className="h-8 w-auto object-contain transition dark:brightness-200 dark:invert"
             />
