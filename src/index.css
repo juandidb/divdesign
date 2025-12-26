@@ -139,67 +139,6 @@ input, textarea {
   @apply rounded-full border border-white/20 bg-white/70 px-4 py-2 text-xs font-semibold uppercase tracking-wide text-muted dark:border-white/10 dark:bg-white/5 dark:text-white/60;
 }
 
-.hero-meta-card {
-  position: relative;
-  overflow: hidden;
-}
-
-.hero-meta-card::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: radial-gradient(circle at 15% 20%, rgba(124, 58, 237, 0.18), transparent 55%);
-  opacity: 0.5;
-  pointer-events: none;
-}
-
-.hero-meta-card > * {
-  position: relative;
-  z-index: 1;
-}
-
-.hero-meta-list {
-  margin-top: 1.25rem;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.5rem 1rem;
-  font-size: 0.85rem;
-  color: rgba(15, 23, 42, 0.85);
-}
-
-.dark .hero-meta-list {
-  color: rgba(248, 250, 252, 0.85);
-}
-
-.hero-meta-list li {
-  position: relative;
-  padding-left: 1rem;
-}
-
-.hero-meta-list li::before {
-  content: '';
-  position: absolute;
-  left: 0;
-  top: 0.45rem;
-  width: 6px;
-  height: 6px;
-  border-radius: 999px;
-  background: #7c3aed;
-  box-shadow: 0 0 12px rgba(124, 58, 237, 0.6);
-}
-
-.hero-meta-note {
-  margin-top: 1.5rem;
-  font-size: 0.8rem;
-  text-transform: uppercase;
-  letter-spacing: 0.2em;
-  color: rgba(15, 23, 42, 0.65);
-}
-
-.dark .hero-meta-note {
-  color: rgba(248, 250, 252, 0.7);
-}
-
 .portfolio-slider {
   @apply relative overflow-hidden;
 }
