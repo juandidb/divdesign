@@ -2,13 +2,16 @@ import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { PlayIcon } from '@heroicons/react/24/outline';
 import { useTranslation } from '../hooks/useTranslation';
+import { useTheme } from '../hooks/useTheme';
 
-const heroVideo = `${import.meta.env.BASE_URL}hero-dark.mp4`;
-const heroPoster = 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=800&q=80';
+const heroVideoDark = `${import.meta.env.BASE_URL}hero-dark.mp4`;
+const heroPosterLight = 'https://images.unsplash.com/photo-1483478550801-ceba5fe50e8e?auto=format&fit=crop&w=1200&q=80';
 
 export function Hero() {
   const { t, locale } = useTranslation();
+  const { theme } = useTheme();
   const videoRef = useRef<HTMLVideoElement | null>(null);
+  const isDark = theme === 'dark';
   const stats =
     locale === 'es'
       ? [
@@ -30,6 +33,8 @@ export function Hero() {
       : ['Discovery sprint within 72h', 'Design + dev in the same sprint', 'Direct line with founders'];
 
   useEffect(() => {
+    if (!isDark) return undefined;
+
     const video = videoRef.current;
     if (!video) return undefined;
 
@@ -52,24 +57,33 @@ export function Hero() {
     return () => {
       video.removeEventListener('loadeddata', handleLoaded);
       video.removeEventListener('timeupdate', handleTimeUpdate);
+      video.pause();
     };
-  }, []);
+  }, [isDark]);
 
   return (
     <header id="hero" className="hero-section -mt-16 md:-mt-20 lg:-mt-24">
       <div className="hero-video-bg" aria-hidden="true">
-        <video
-          ref={videoRef}
-          className="hero-video"
-          autoPlay
-          loop
-          muted
-          playsInline
-          preload="auto"
-          poster={heroPoster}
-        >
-          <source src={heroVideo} type="video/mp4" />
-        </video>
+        {isDark ? (
+          <video
+            ref={videoRef}
+            className="hero-video"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+          >
+            <source src={heroVideoDark} type="video/mp4" />
+          </video>
+        ) : (
+          <img
+            src={heroPosterLight}
+            alt="Studio hero"
+            className="hero-video hero-poster"
+            loading="lazy"
+          />
+        )}
         <div className="hero-video-scrim" />
       </div>
       <div className="hero-gradient" aria-hidden="true" />
