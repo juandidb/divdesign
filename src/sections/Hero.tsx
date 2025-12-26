@@ -1,3 +1,4 @@
+import { useEffect, useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDownRightIcon, PlayIcon } from '@heroicons/react/24/outline';
 import { useTranslation } from '../hooks/useTranslation';
@@ -7,6 +8,7 @@ const heroPoster = 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a
 
 export function Hero() {
   const { t, locale } = useTranslation();
+  const videoRef = useRef<HTMLVideoElement | null>(null);
   const stats =
     locale === 'es'
       ? [
@@ -48,8 +50,64 @@ export function Hero() {
           availability: 'Available for select projects',
         };
 
+  const videoMeta =
+    locale === 'es'
+      ? {
+          label: 'Sesión en vivo',
+          title: 'UI kit + demo nocturna',
+          bullets: ['Loop de 12s', 'Render 4K', 'Grading frío con neón'],
+          note: 'Grabado en mi setup real para transmitir foco premium.',
+        }
+      : {
+          label: 'Live session',
+          title: 'Nocturnal UI kit walkthrough',
+          bullets: ['12s seamless loop', '4K render', 'Cool neon grading'],
+          note: 'Captured in my real setup to keep the premium vibe.',
+        };
+
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return undefined;
+
+    const handleLoaded = () => {
+      video.currentTime = 0.05;
+      void video.play();
+    };
+
+    const handleTimeUpdate = () => {
+      if (!video.duration) return;
+      const remaining = video.duration - video.currentTime;
+      if (remaining <= 0.2) {
+        video.currentTime = 0.05;
+      }
+    };
+
+    video.addEventListener('loadeddata', handleLoaded);
+    video.addEventListener('timeupdate', handleTimeUpdate);
+
+    return () => {
+      video.removeEventListener('loadeddata', handleLoaded);
+      video.removeEventListener('timeupdate', handleTimeUpdate);
+    };
+  }, []);
+
   return (
     <header id="hero" className="hero-section -mt-16 md:-mt-20 lg:-mt-24">
+      <div className="hero-video-bg" aria-hidden="true">
+        <video
+          ref={videoRef}
+          className="hero-video"
+          autoPlay
+          loop
+          muted
+          playsInline
+          preload="auto"
+          poster={heroPoster}
+        >
+          <source src={heroVideo} type="video/mp4" />
+        </video>
+        <div className="hero-video-scrim" />
+      </div>
       <div className="hero-gradient" aria-hidden="true" />
       <div className="section-shell w-full py-24 lg:py-32">
         <div className="grid gap-12 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
@@ -97,22 +155,20 @@ export function Hero() {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="space-y-6"
           >
-            <div className="hero-video-card">
-              <div className="hero-video-overlay" />
-              <video
-                className="hero-video"
-                autoPlay
-                loop
-                muted
-                playsInline
-                poster={heroPoster}
-              >
-                <source src={heroVideo} type="video/mp4" />
-              </video>
-              <div className="hero-video-meta">
-                <p className="text-xs uppercase tracking-[0.3em] text-white/70">Live build</p>
-                <p className="text-base font-semibold text-white">Design system + demo walkthrough</p>
+            <div className="glass-panel hero-meta-card">
+              <div className="flex items-center justify-between gap-3">
+                <span className="pill text-[0.6rem] tracking-[0.35em] text-ink/70 dark:text-white/70">
+                  {videoMeta.label}
+                </span>
+                <span className="text-xs font-semibold text-ink/70 dark:text-white/60">4K</span>
               </div>
+              <h3 className="mt-4 text-2xl font-semibold text-ink dark:text-mist">{videoMeta.title}</h3>
+              <ul className="hero-meta-list">
+                {videoMeta.bullets.map((bullet) => (
+                  <li key={bullet}>{bullet}</li>
+                ))}
+              </ul>
+              <p className="hero-meta-note">{videoMeta.note}</p>
             </div>
             <div className="card-surface relative overflow-hidden">
               <div className="absolute inset-0 bg-gradient-to-br from-accent/10 via-transparent to-transparent" />
