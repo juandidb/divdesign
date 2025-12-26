@@ -23,6 +23,29 @@ type ProcessStep = {
   duration: string;
 };
 
+type ProofBrand = {
+  name: string;
+  caption: string;
+};
+
+type ProofMetric = {
+  value: string;
+  label: string;
+};
+
+type InsightItem = {
+  pill: string;
+  title: string;
+  description: string;
+  link: string;
+  linkLabel: string;
+};
+
+type FaqItem = {
+  question: string;
+  answer: string;
+};
+
 export type Copy = {
   nav: { hero: string; services: string; work: string; process: string; testimonials: string; contact: string; cta: string };
   hero: {
@@ -44,6 +67,9 @@ export type Copy = {
     form: { name: string; email: string; project: string; budget: string; submit: string; success: string };
     budgetOptions: string[];
   };
+  proof: { label: string; title: string; subtitle: string; brands: ProofBrand[]; metrics: ProofMetric[] };
+  insights: { title: string; subtitle: string; items: InsightItem[] };
+  faq: { title: string; subtitle: string; items: FaqItem[] };
 };
 
 const titleEs = 'Diseño web premium para vender tus servicios.';
@@ -196,6 +222,68 @@ export const copy: Record<Locale, Copy> = {
       },
       budgetOptions: ['USD 1k - 3k', 'USD 3k - 6k', 'USD 6k - 10k', 'USD 10k+'],
     },
+    proof: {
+      label: 'Confianza',
+      title: 'Equipos de producto y founders que confían',
+      subtitle: 'He colaborado con startups SaaS, fintechs y consultoras que necesitaban salir con algo premium en semanas, no meses.',
+      brands: [
+        { name: 'Mercury Labs', caption: 'Series A SaaS' },
+        { name: 'AndesPay', caption: 'Fintech regional' },
+        { name: 'Northpeak', caption: 'Consultora growth' },
+        { name: 'Pionero', caption: 'Marketplace' },
+        { name: 'Altitud', caption: 'Venture Studio' },
+      ],
+      metrics: [
+        { value: '+38%', label: 'Mejora en conversión promedio' },
+        { value: '24h', label: 'Tiempo de respuesta' },
+        { value: '92', label: 'NPS de clientes' },
+      ],
+    },
+    insights: {
+      title: 'Insights accionables',
+      subtitle: 'Mini playbooks y aprendizajes listos para aplicar en tu propio funnel.',
+      items: [
+        {
+          pill: 'Playbook',
+          title: 'Cómo armar un flow de demo que convierta',
+          description: 'Checklist en 5 pasos para que tu CTA lleve a conversaciones reales y no a formularios muertos.',
+          link: '#contact',
+          linkLabel: 'Quiero el flow',
+        },
+        {
+          pill: 'Research',
+          title: 'Entrevistas relámpago para founders ocupados',
+          description: 'Formato de 30 minutos para validar pricing y mensajes sin frenar el roadmap.',
+          link: '#contact',
+          linkLabel: 'Agendar sesión',
+        },
+        {
+          pill: 'Entrega',
+          title: 'Hand-off sin drama entre diseño y dev',
+          description: 'Tokens, librerías y documentación que tu equipo puede reutilizar al día siguiente.',
+          link: '#contact',
+          linkLabel: 'Ver formato',
+        },
+      ],
+    },
+    faq: {
+      title: 'FAQ y garantías',
+      subtitle: 'Transparencia total antes de empezar. Si algo no aplica a tu caso, lo revisamos juntos.',
+      items: [
+        {
+          question: '¿Trabajás con agencias o solo clientes directos?',
+          answer: 'Ambos. Me sumo como product designer/frontend embed o lidero el proyecto end-to-end con tus stakeholders.',
+        },
+        {
+          question: '¿Qué pasa si necesito cambios luego del lanzamiento?',
+          answer: 'Incluyo 10 días de soporte para ajustes menores y opciones de retainer mensual para mejoras continuas.',
+        },
+        {
+          question: '¿Podés sumarte a calls con inversores/equipo?',
+          answer: 'Sí. Participo en demos clave para asegurar que el mensaje y la demo estén alineados con el nuevo sitio.',
+        },
+      ],
+    },
   },
   en: {
     nav: {
@@ -334,6 +422,68 @@ export const copy: Record<Locale, Copy> = {
         success: 'Thanks for reaching out. I will reply within 24h.',
       },
       budgetOptions: ['USD 1k - 3k', 'USD 3k - 6k', 'USD 6k - 10k', 'USD 10k+'],
+    },
+    proof: {
+      label: 'Trusted by',
+      title: 'Product teams and founders who need momentum',
+      subtitle: 'I plug into SaaS, fintech, and boutique consultancies that must launch premium experiences in weeks, not months.',
+      brands: [
+        { name: 'Mercury Labs', caption: 'Series A SaaS' },
+        { name: 'AndesPay', caption: 'LATAM fintech' },
+        { name: 'Northpeak', caption: 'Growth studio' },
+        { name: 'Pioneer', caption: 'Marketplace' },
+        { name: 'Altitude', caption: 'Venture studio' },
+      ],
+      metrics: [
+        { value: '+38%', label: 'Avg. conversion lift' },
+        { value: '24h', label: 'Response time' },
+        { value: '92', label: 'Client NPS' },
+      ],
+    },
+    insights: {
+      title: 'Actionable insights',
+      subtitle: 'Micro playbooks and lessons you can plug into your own funnel.',
+      items: [
+        {
+          pill: 'Playbook',
+          title: 'Designing demo flows that sell',
+          description: 'A five-step checklist so your CTA leads to real conversations, not dead forms.',
+          link: '#contact',
+          linkLabel: 'Send me the playbook',
+        },
+        {
+          pill: 'Research',
+          title: 'Lightning interviews for busy founders',
+          description: '30-minute format to validate pricing and messaging without derailing the roadmap.',
+          link: '#contact',
+          linkLabel: 'Book a session',
+        },
+        {
+          pill: 'Delivery',
+          title: 'Hand-offs devs actually enjoy',
+          description: 'Tokens, libraries, and docs your team can reuse the very next day.',
+          link: '#contact',
+          linkLabel: 'See the toolkit',
+        },
+      ],
+    },
+    faq: {
+      title: 'FAQ + guarantees',
+      subtitle: 'Full transparency before we start. If one of these does not fit your scenario, we rewrite it.',
+      items: [
+        {
+          question: 'Do you partner with agencies or only direct clients?',
+          answer: 'Both. I join as an embedded product designer/frontend dev or lead the project end-to-end with your stakeholders.',
+        },
+        {
+          question: 'What happens if we need changes after launch?',
+          answer: 'I include 10 days of support for tweaks plus optional retainers for ongoing improvements.',
+        },
+        {
+          question: 'Can you join investor or team calls?',
+          answer: 'Yes. I attend key demos to make sure the story and walkthrough stay aligned with the new site.',
+        },
+      ],
     },
   },
 };

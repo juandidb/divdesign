@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowUpRightIcon } from '@heroicons/react/24/outline';
 import { SectionHeader } from '../components/SectionHeader';
@@ -5,7 +6,26 @@ import { useTranslation } from '../hooks/useTranslation';
 
 export function Portfolio() {
   const { t } = useTranslation();
-  const projects = [...t.work.items, ...t.work.items];
+  const [isMobile, setIsMobile] = useState(false);
+  const baseProjects = t.work.items;
+  const originalProjectsLength = baseProjects.length;
+
+  useEffect(() => {
+    const mediaQuery = window.matchMedia('(max-width: 640px)');
+    const handleChange = () => setIsMobile(mediaQuery.matches);
+
+    handleChange();
+
+    if (typeof mediaQuery.addEventListener === 'function') {
+      mediaQuery.addEventListener('change', handleChange);
+      return () => mediaQuery.removeEventListener('change', handleChange);
+    }
+
+    mediaQuery.addListener(handleChange);
+    return () => mediaQuery.removeListener(handleChange);
+  }, []);
+
+  const projects = isMobile ? baseProjects : [...baseProjects, ...baseProjects];
 
   return (
     <section id="portfolio" className="section-shell py-20">
@@ -13,15 +33,19 @@ export function Portfolio() {
         <SectionHeader title={t.work.title} subtitle={t.work.subtitle} kicker={t.nav.work} />
         <div className="portfolio-slider">
           <div className="portfolio-track">
-            {projects.map((item, idx) => (
-              <motion.article
-                key={`${item.title}-${idx}`}
-                className="group relative min-h-[360px] w-full flex-shrink-0 basis-[85%] overflow-hidden rounded-3xl border border-white/10 shadow-card sm:basis-[55%] lg:basis-[33%]"
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.45, delay: (idx % t.work.items.length) * 0.05 }}
-                viewport={{ once: true, amount: 0.35 }}
-              >
+            {projects.map((item, idx) => {
+              const isLoopingCard = !isMobile && idx >= originalProjectsLength;
+
+              return (
+                <motion.article
+                  key={`${item.title}-${idx}`}
+                  className="group relative min-h-[360px] w-full flex-shrink-0 basis-[85%] overflow-hidden rounded-3xl border border-white/10 shadow-card sm:basis-[55%] lg:basis-[33%]"
+                  initial={isLoopingCard ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+                  whileInView={isLoopingCard ? undefined : { opacity: 1, y: 0 }}
+                  animate={isLoopingCard ? { opacity: 1, y: 0 } : undefined}
+                  transition={{ duration: 0.45, delay: isLoopingCard ? 0 : (idx % originalProjectsLength) * 0.05 }}
+                  viewport={isLoopingCard ? undefined : { once: true, amount: 0.35 }}
+                >
                 <img
                   src={item.image}
                   alt={`${item.title} preview`}
@@ -57,8 +81,9 @@ export function Portfolio() {
                     </a>
                   </div>
                 </div>
-              </motion.article>
-            ))}
+                </motion.article>
+              );
+            })}
           </div>
         </div>
       </div>
