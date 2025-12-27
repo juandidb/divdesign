@@ -5,7 +5,8 @@ import { useTranslation } from '../hooks/useTranslation';
 import { useTheme } from '../hooks/useTheme';
 
 const heroVideoDark = `${import.meta.env.BASE_URL}hero-dark.mp4`;
-const heroPosterLight = 'https://images.unsplash.com/photo-1483478550801-ceba5fe50e8e?auto=format&fit=crop&w=1200&q=80';
+const heroPosterLight = 'https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?auto=format&fit=crop&w=1600&q=80';
+
 
 export function Hero() {
   const { t, locale } = useTranslation();

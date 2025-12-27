@@ -84,6 +84,7 @@ const projectImages = {
     'https://images.unsplash.com/photo-1628158088936-68ccaaa400dc?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
   juan: `${publicBaseUrl}projects/juandibenedetto.png`,
   nineDelivery: `${publicBaseUrl}projects/9delivery.png`,
+  luciano: `${publicBaseUrl}projects/lucianoclerico.png`,
 } as const;
 
 export const copy: Record<Locale, Copy> = {
@@ -147,6 +148,16 @@ export const copy: Record<Locale, Copy> = {
           metric: 'Live',
           linkLabel: 'Visitar',
           link: 'https://juandibenedetto.tech/',
+        },
+        {
+          title: 'Luciano Clérico',
+          subtitle: 'Consultoría IT',
+          description: 'Landing con propuesta de valor clara y llamados a la acción directos para soporte IT.',
+          tags: ['Landing', 'UX/UI', 'Frontend'],
+          image: projectImages.luciano,
+          metric: 'Live',
+          linkLabel: 'Ver sitio',
+          link: '#contact',
         },
         {
           title: 'Launchpad SaaS',
@@ -358,6 +369,16 @@ export const copy: Record<Locale, Copy> = {
           metric: 'Live',
           linkLabel: 'Visit site',
           link: 'https://juandibenedetto.tech/',
+        },
+        {
+          title: 'Luciano Clérico',
+          subtitle: 'IT consulting',
+          description: 'Landing with a sharp value proposition and direct CTAs for IT support.',
+          tags: ['Landing', 'UX/UI', 'Frontend'],
+          image: projectImages.luciano,
+          metric: 'Live',
+          linkLabel: 'View site',
+          link: '#contact',
         },
         {
           title: 'Launchpad SaaS',
