@@ -76,11 +76,14 @@ const titleEs = 'Diseño web premium para vender tus servicios.';
 
 const titleEn = 'Premium web design to sell your services.';
 
+const publicBaseUrl = import.meta.env.BASE_URL;
+
 const projectImages = {
   launchpad: 'https://images.unsplash.com/photo-1489515217757-5fd1be406fef?auto=format&fit=crop&w=1600&q=80',
   fintech:
     'https://images.unsplash.com/photo-1628158088936-68ccaaa400dc?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
-  juan: 'https://images.unsplash.com/photo-1508780709619-79562169bc64?auto=format&fit=crop&w=1600&q=80',
+  juan: `${publicBaseUrl}projects/juandibenedetto.png`,
+  nineDelivery: `${publicBaseUrl}projects/9delivery.png`,
 } as const;
 
 export const copy: Record<Locale, Copy> = {
@@ -126,6 +129,26 @@ export const copy: Record<Locale, Copy> = {
       subtitle: 'Selección curada de lanzamientos para startups, SaaS y marcas en crecimiento.',
       items: [
         {
+          title: '9delivery',
+          subtitle: 'Plataforma de delivery',
+          description: 'Diseño de interfaz y landing enfocada en claridad de oferta y velocidad de navegación.',
+          tags: ['UX/UI', 'Web', 'Frontend'],
+          image: projectImages.nineDelivery,
+          metric: 'Live',
+          linkLabel: 'Ver caso',
+          link: '#contact',
+        },
+        {
+          title: 'Juan Di Benedetto - IT Support',
+          subtitle: 'Sitio personal',
+          description: 'Landing portfolio con foco en autoridad personal y despliegue listo para leads directos.',
+          tags: ['Portfolio', 'Next.js', 'Deploy'],
+          image: projectImages.juan,
+          metric: 'Live',
+          linkLabel: 'Visitar',
+          link: 'https://juandibenedetto.tech/',
+        },
+        {
           title: 'Launchpad SaaS',
           subtitle: 'Sitio de lanzamiento B2B',
           description: 'Rediseño integral con flujo de demo y pricing flexible. +42% en leads calificados.',
@@ -144,16 +167,6 @@ export const copy: Record<Locale, Copy> = {
           metric: '95%+ clientes',
           linkLabel: 'Ver detalle',
           link: '#contact',
-        },
-        {
-          title: 'Juan Di Benedetto - IT Support',
-          subtitle: 'Sitio personal',
-          description: 'Landing portfolio con foco en autoridad personal y despliegue listo para leads directos.',
-          tags: ['Portfolio', 'Next.js', 'Deploy'],
-          image: projectImages.juan,
-          metric: 'Live',
-          linkLabel: 'Visitar',
-          link: 'https://juandibenedetto.tech/',
         },
       ],
     },
@@ -327,6 +340,26 @@ export const copy: Record<Locale, Copy> = {
       subtitle: 'Curated launches for startups, SaaS, and growth brands.',
       items: [
         {
+          title: '9delivery',
+          subtitle: 'Delivery platform',
+          description: 'UI and landing design focused on offer clarity and fast browsing.',
+          tags: ['UX/UI', 'Web', 'Frontend'],
+          image: projectImages.nineDelivery,
+          metric: 'Live',
+          linkLabel: 'View case',
+          link: '#contact',
+        },
+        {
+          title: 'juandibenedetto.tech',
+          subtitle: 'Personal site',
+          description: 'Authority-building portfolio page with a direct lead capture focus and production deployment.',
+          tags: ['Portfolio', 'Next.js', 'Deployment'],
+          image: projectImages.juan,
+          metric: 'Live',
+          linkLabel: 'Visit site',
+          link: 'https://juandibenedetto.tech/',
+        },
+        {
           title: 'Launchpad SaaS',
           subtitle: 'B2B launch site',
           description: 'Full redesign with demo flow and flexible pricing. +42% qualified leads.',
@@ -345,16 +378,6 @@ export const copy: Record<Locale, Copy> = {
           metric: '95%+ clientes',
           linkLabel: 'View detail',
           link: '#contact',
-        },
-        {
-          title: 'juandibenedetto.tech',
-          subtitle: 'Personal site',
-          description: 'Authority-building portfolio page with a direct lead capture focus and production deployment.',
-          tags: ['Portfolio', 'Next.js', 'Deployment'],
-          image: projectImages.juan,
-          metric: 'Live',
-          linkLabel: 'Visit site',
-          link: 'https://juandibenedetto.tech/',
         },
       ],
     },
